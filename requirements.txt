@@ -1,0 +1,25 @@
+# Paisalo Loan Agent - Google ADK Integration
+# Python 3.13 Requirements
+
+# Web Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+
+# Data Processing
+dataclasses-json==0.6.3
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+requests==2.31.0
+
+# Development
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1
+
+# Logging and Monitoring
+structlog==23.2.0
+
+# Optional: For production deployment
+gunicorn==21.2.0
