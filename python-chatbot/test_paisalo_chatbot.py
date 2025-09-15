@@ -97,18 +97,24 @@ class TestLoanValidator:
             assert not is_valid, f"Age {age} should be invalid"
     
     def test_credit_score_validation(self):
-        """Test credit score validation"""
-        # Valid scores
-        valid_scores = [18, 100, 300, 650]
+        """Test credit score validation - ELIGIBLE if < 18 OR > 650"""
+        # Valid scores (ELIGIBLE): < 18 OR > 650
+        valid_scores = [0, 5, 10, 17, 651, 700, 800, 1000]
         for score in valid_scores:
             is_valid, message = self.validator.validate_credit_score(score)
-            assert is_valid, f"Credit score {score} should be valid"
+            assert is_valid, f"Credit score {score} should be valid (eligible)"
         
-        # Invalid scores
-        invalid_scores = [17, 651, -10, 1000]
+        # Invalid scores (NOT ELIGIBLE): between 18-650 (inclusive)
+        invalid_scores = [18, 50, 100, 300, 500, 650]
         for score in invalid_scores:
             is_valid, message = self.validator.validate_credit_score(score)
-            assert not is_valid, f"Credit score {score} should be invalid"
+            assert not is_valid, f"Credit score {score} should be invalid (not eligible)"
+        
+        # Test negative scores (should be invalid due to format)
+        negative_scores = [-10, -1]
+        for score in negative_scores:
+            is_valid, message = self.validator.validate_credit_score(score)
+            assert not is_valid, f"Credit score {score} should be invalid (negative)"
     
     def test_document_validation(self):
         """Test document combination validation"""
@@ -332,7 +338,7 @@ class TestPaisaloChatbot:
         assert "credit score" in response['fulfillmentText'].lower()
         
         # Step 3: Credit score input
-        response = self.chatbot.handle_conversation_flow("My credit score is 650", self.chatbot.sessions[session_id])
+        response = self.chatbot.handle_conversation_flow("My credit score is 700", self.chatbot.sessions[session_id])
         assert "documents" in response['fulfillmentText'].lower()
         
         # Step 4: Documents input
@@ -409,7 +415,7 @@ class TestIntegrationScenarios:
             test_inputs = [
                 "hello",
                 "I am 35 years old",
-                "My credit score is 600",
+                "My credit score is 700",  # Changed to 700 (> 650, so eligible)
                 "I have PAN and voter ID",
                 "ABCDE1234F",
                 "I need 80000",
@@ -439,7 +445,7 @@ class TestIntegrationScenarios:
             test_inputs = [
                 "hello",
                 "I am 35 years old", 
-                "My credit score is 600",
+                "My credit score is 700",  # Changed to 700 (> 650, so eligible)
                 "I have PAN and voter ID",
                 "ABCDE1234F",
                 "I need 80000",
@@ -463,4 +469,3 @@ class TestIntegrationScenarios:
 if __name__ == '__main__':
     # Run tests
     pytest.main([__file__, '-v', '--tb=short'])
-

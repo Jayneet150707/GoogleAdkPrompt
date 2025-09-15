@@ -127,14 +127,16 @@ class LoanValidator:
         return True, "Age is valid"
     
     def validate_credit_score(self, score: int) -> Tuple[bool, str]:
-        """Validate credit score"""
+        """Validate credit score - ELIGIBLE if score < 18 OR score > 650"""
         if not isinstance(score, int) or score < 0:
             return False, "Please provide a valid credit score"
         
+        # Credit score is ELIGIBLE if < 18 OR > 650
+        # Credit score is NOT ELIGIBLE if between 18-650 (inclusive)
         if score < self.rules.MIN_CREDIT_SCORE or score > self.rules.MAX_CREDIT_SCORE:
-            return False, f"Credit score must be between {self.rules.MIN_CREDIT_SCORE} and {self.rules.MAX_CREDIT_SCORE}"
+            return True, f"Credit score {score} is eligible (outside 18-650 range)"
         
-        return True, "Credit score is valid"
+        return False, f"Credit score {score} is not eligible. Score must be less than 18 or greater than 650"
     
     def validate_documents(self, documents: List[str]) -> Tuple[bool, str]:
         """Validate document combinations"""
@@ -615,4 +617,3 @@ if __name__ == '__main__':
     # Create and run the chatbot
     chatbot = PaisaloChatbot()
     chatbot.run(debug=True)
-

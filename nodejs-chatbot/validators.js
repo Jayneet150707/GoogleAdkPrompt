@@ -33,6 +33,8 @@ function validateAge(age) {
 
 /**
  * Validates credit score according to loan eligibility rules
+ * ELIGIBLE if score < 18 OR score > 650
+ * NOT ELIGIBLE if score is between 18-650 (inclusive)
  * @param {number} creditScore - User's credit score
  * @returns {object} - Validation result
  */
@@ -46,16 +48,18 @@ function validateCreditScore(creditScore) {
     };
   }
 
+  // Credit score is ELIGIBLE if < 18 OR > 650
+  // Credit score is NOT ELIGIBLE if between 18-650 (inclusive)
   if (numScore < LOAN_RULES.CREDIT_SCORE.MIN || numScore > LOAN_RULES.CREDIT_SCORE.MAX) {
     return {
-      isValid: false,
-      message: MESSAGES.ERRORS.CREDIT_SCORE_INVALID
+      isValid: true,
+      message: `Credit score ${numScore} is eligible (outside 18-650 range).`
     };
   }
 
   return {
-    isValid: true,
-    message: 'Credit score is eligible for loan.'
+    isValid: false,
+    message: `Credit score ${numScore} is not eligible. Score must be less than 18 or greater than 650.`
   };
 }
 
@@ -196,4 +200,3 @@ module.exports = {
   validatePANRequirement,
   parseDocuments
 };
-
