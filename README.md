@@ -4,7 +4,8 @@ A comprehensive loan eligibility processing system with multiple implementations
 
 ## 📁 Available Implementations
 
-- **Python Implementation** (Root directory) - Flask-based API server
+- **Python 3.13 Implementation** (Root directory) - Original Flask-based API server
+- **Python 3.13 Chatbot** (`python-chatbot/`) - Advanced Google AdK chatbot with modern Python features
 - **Node.js Implementation** (`nodejs-chatbot/`) - Express.js-based Google Actions chatbot
 
 ## 🚀 Features
