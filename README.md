@@ -1,6 +1,12 @@
 # 🏦 Paisalo Loan Agent - Google ADK Integration
 
-A comprehensive loan eligibility processing system built with Python 3.13 for Google Android Development Kit (ADK) integration.
+A comprehensive loan eligibility processing system with multiple implementations for Google Android Development Kit (ADK) integration.
+
+## 📁 Available Implementations
+
+- **Python 3.13 Implementation** (Root directory) - Original Flask-based API server
+- **Python 3.13 Chatbot** (`python-chatbot/`) - Advanced Google AdK chatbot with modern Python features
+- **Node.js Implementation** (`nodejs-chatbot/`) - Express.js-based Google Actions chatbot
 
 ## 🚀 Features
 

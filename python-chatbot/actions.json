@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "description": "Paisalo Loan Assistant - Main Entry Point",
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "paisalo-loan-assistant"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN",
+        "trigger": {
+          "queryPatterns": [
+            "talk to paisalo loan assistant",
+            "speak to paisalo",
+            "loan eligibility check",
+            "calculate emi",
+            "paisalo loan",
+            "check loan eligibility",
+            "apply for loan",
+            "loan calculator"
+          ]
+        }
+      }
+    },
+    {
+      "description": "Help Intent",
+      "name": "HELP",
+      "fulfillment": {
+        "conversationName": "paisalo-loan-assistant"
+      },
+      "intent": {
+        "name": "actions.intent.TEXT",
+        "trigger": {
+          "queryPatterns": [
+            "help",
+            "what can you do",
+            "how does this work",
+            "assistance",
+            "guide me"
+          ]
+        }
+      }
+    }
+  ],
+  "conversations": {
+    "paisalo-loan-assistant": {
+      "name": "paisalo-loan-assistant",
+      "url": "https://your-webhook-url.com/webhook",
+      "fulfillmentApiVersion": 2,
+      "inlineCloudFunction": false
+    }
+  },
+  "locale": "en",
+  "settings": {
+    "projectId": "paisalo-loan-assistant",
+    "defaultLocale": "en",
+    "enabledRegions": [
+      "IN"
+    ],
+    "category": "FINANCE",
+    "usesInteractiveCanvas": false,
+    "usesDigitalPurchaseApi": false,
+    "usesTransactionsApi": false,
+    "designGuidelines": {
+      "colorScheme": "light",
+      "voiceDesign": {
+        "ssml": true
+      }
+    },
+    "surfaceRequirements": {
+      "minimumRequirements": [
+        {
+          "capabilities": [
+            "actions.capability.AUDIO_OUTPUT",
+            "actions.capability.SCREEN_OUTPUT"
+          ]
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "displayName": "Paisalo Loan Assistant",
+    "invocationName": "paisalo loan assistant",
+    "category": "FINANCE",
+    "shortDescription": "Check loan eligibility and calculate EMI with Paisalo Digital Limited",
+    "fullDescription": "Paisalo Loan Assistant helps you check your loan eligibility and calculate EMI based on your profile. We validate age, credit score, documents, and income to provide instant loan approval decisions with accurate EMI calculations using the Straight Line Method.",
+    "smallLogoUrl": "https://your-domain.com/images/paisalo-logo-small.png",
+    "largeLogoUrl": "https://your-domain.com/images/paisalo-logo-large.png",
+    "companyName": "Paisalo Digital Limited",
+    "contactEmail": "support@paisalo.in",
+    "privacyPolicyUrl": "https://paisalo.in/privacy-policy",
+    "termsOfServiceUrl": "https://paisalo.in/terms-of-service",
+    "testingInstructions": "Say 'Talk to Paisalo Loan Assistant' to start. Follow the conversation flow to check loan eligibility.",
+    "additionalInformation": {
+      "developerName": "Paisalo Digital Limited",
+      "developerEmail": "tech@paisalo.in"
+    }
+  }
+}
+

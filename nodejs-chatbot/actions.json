@@ -1,0 +1,32 @@
+{
+  "actions": [
+    {
+      "description": "Default Welcome Intent",
+      "name": "MAIN",
+      "fulfillment": {
+        "conversationName": "paisalo-loan-assistant"
+      },
+      "intent": {
+        "name": "actions.intent.MAIN",
+        "trigger": {
+          "queryPatterns": [
+            "talk to paisalo loan assistant",
+            "speak to paisalo",
+            "loan eligibility check",
+            "calculate emi",
+            "paisalo loan"
+          ]
+        }
+      }
+    }
+  ],
+  "conversations": {
+    "paisalo-loan-assistant": {
+      "name": "paisalo-loan-assistant",
+      "url": "https://your-webhook-url.com/webhook",
+      "fulfillmentApiVersion": 2
+    }
+  },
+  "locale": "en"
+}
+
